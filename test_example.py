@@ -6,12 +6,13 @@ if test:
 
     file = open('summary-service.txt', mode='w')
 
+    time.sleep(5)
 
     file.write(test)
 
     file.close()
 
-    time.sleep(10)
+    time.sleep(5)
 
     with open('summary-service.txt') as f:
         lines_after = f.readlines()[1:]

@@ -1,6 +1,7 @@
 from urllib.request import urlopen
 from urllib.request import Request
 from bs4 import BeautifulSoup
+import json
 
 
 def get_summary(url):
@@ -59,7 +60,18 @@ while __name__ == '__main__':
     file = open('summary-service.txt', mode='r+')
     test_1 = file.read(4)
     if test_1 == 'http':
-        summary = get_summary(test_1 + file.read())
+
+        url = test_1 + file.read()
+
+        summary = get_summary(url)
+
+        json_string = {
+            'url': url,
+            'summary': summary
+        }
+
+        with open('summary.json', 'w') as f:
+            json.dump(json_string, f, indent=2)
 
         open('summary-service.txt', 'w').close()
 
